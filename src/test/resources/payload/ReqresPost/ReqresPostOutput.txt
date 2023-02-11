@@ -1,0 +1,6 @@
+{
+    "name": "$-{name}",
+     "job": "$-{job}"
+    "id": "$-{id}"
+    "createdAt": "$-{createdAt}"
+}

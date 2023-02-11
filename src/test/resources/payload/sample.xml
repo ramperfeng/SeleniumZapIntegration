@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <student>  
+        <id>$-{id}</id>  
+        <firstname>$-{firstname}</firstname>  
+        <lastname>Kumar</lastname>  
+        <subject>Math</subject>  
+        <marks>83</marks>  
+    </student>  
