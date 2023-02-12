@@ -43,8 +43,8 @@ public class Hooks extends Utilities implements En {
 
             FIS = new FileInputStream(properties.getProperty("SeleniumZapIntegration\\src\\main\\java\\config\\GlobalConfig.properties"));
             System.out.println("global property files printed -------- ");
-            ErrorProp = new FileInputStream(SeleniumZapIntegration\\src\\main\\java\config\\src\\main\\java\\config\\GlobalConfig.properties");
-            ENDPointProp = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\test.properties");
+            ErrorProp = new FileInputStream("SeleniumZapIntegration\\src\\test\\resources\\Application-props\\error.properties");
+            ENDPointProp = new FileInputStream("SeleniumZapIntegration\src\test\\resources\Application-props\\apiEndPoints.properties");
             config1 = new Properties();
             config1.load(FIS);
             config1.load(ErrorProp);
