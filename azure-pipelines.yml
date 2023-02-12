@@ -17,7 +17,8 @@ steps:
         script: |
           ls -ltr
           pwd
-          docker run -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -port 8090 -host 0.0.0.0
+          docker run -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -port 8090 -host 0.0.0.0 &
+          mvn clean install test 
   
 
     - task: Maven@3
