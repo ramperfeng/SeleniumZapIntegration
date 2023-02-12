@@ -16,7 +16,7 @@ steps:
     script: |
       # Write your commands here
       
-      java -jar zap.jar
+      java -jar zap.jar -daemon
 
 - task: Maven@3
   inputs:
