@@ -10,6 +10,15 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: owaspzap@1
+  inputs:
+    aggressivemode: true
+    threshold: '50'
+    port: '8080'
+  displayName: 'Owasp Scan'
+
+
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
