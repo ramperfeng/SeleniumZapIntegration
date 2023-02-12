@@ -12,14 +12,12 @@ pool:
 steps:
     - task: CmdLine@2
       continueOnError: true
-      inputs:
-      
+      inputs:  
         script: |
           ls -ltr
           pwd
-          docker run -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -port 8090 -host 0.0.0.0 &
-          mvn clean test 
-  
-
-
-
+          wget -q -o ./zap.tar.gz https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2.12.0_Linux.tar.gz
+          tar -xf ./zap.tar.gz 
+          ls -ltr
+          sh ./zap/zap.sh -daemon &
+          mvn clean test
