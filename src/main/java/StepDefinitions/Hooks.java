@@ -40,7 +40,7 @@ public class Hooks extends Utilities implements En {
             }
             myScenario = scenario;
 
-            FIS = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\config\\GlobalConfig.properties");
+            FIS = new FileInputStream("/src/main/java/config/GlobalConfig.properties");
             System.out.println("global property files printed -------- ");
             ErrorProp = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\config\\GlobalConfig.properties");
             ENDPointProp = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\test.properties");
