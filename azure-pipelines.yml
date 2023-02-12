@@ -18,17 +18,8 @@ steps:
           ls -ltr
           pwd
           docker run -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -port 8090 -host 0.0.0.0 &
-          mvn clean install test 
+          mvn clean test 
   
 
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'pom.xml'
-        mavenOptions: '-Xmx3072m'
-        javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '1.11'
-        jdkArchitectureOption: 'x64'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        goals: 'clean test'
+
 
