@@ -41,7 +41,7 @@ public class Hooks extends Utilities implements En {
             myScenario = scenario;
             System.out.println("**************global property files printed -------- ");
 
-            FIS = new FileInputStream(properties.getProperty("SeleniumZapIntegration\\src\\main\\java\\config\\GlobalConfig.properties"));
+           /* FIS = new FileInputStream(properties.getProperty("SeleniumZapIntegration\\src\\main\\java\\config\\GlobalConfig.properties"));
             System.out.println("global property files printed -------- ");
             //ErrorProp = new FileInputStream("SeleniumZapIntegration\\src\\test\\resources\\Application-props\\error.properties");
             //ENDPointProp = new FileInputStream("SeleniumZapIntegration\\src\\test\\resources\\Application-props\\apiEndPoints.properties");
@@ -49,7 +49,7 @@ public class Hooks extends Utilities implements En {
             config1.load(FIS);
             config1.load(ErrorProp);
             config1.load(ENDPointProp);
-            failSafePropertyGeneration();
+            failSafePropertyGeneration();*/
 
 
         });
