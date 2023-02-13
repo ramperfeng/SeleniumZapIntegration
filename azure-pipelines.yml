@@ -22,6 +22,7 @@ steps:
           docker ps | grep zapserver
           IP_Address=`docker container inspect -f '{{ .NetworkSettings.IPAddress }}'`
           echo $IP_Address
+          curl -v "http://$IP_Address:8080"
           ls -ltr
           mvn clean test 
           docker exec zapserver zap-cli report -o vulnerability.html -f HTML 
