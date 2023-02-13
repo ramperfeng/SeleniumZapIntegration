@@ -17,7 +17,8 @@ steps:
           ls -ltr
           pwd
           wget -q -O zap.tar.gz https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2.12.0_Linux.tar.gz
-          tar -xzf zap.tar.gz 
+          tar -xzf zap.tar.gz
+          mv ZAP_2.12.0 zap
           ls -ltr
           sh zap/zap.sh -daemon &
           mvn clean test
