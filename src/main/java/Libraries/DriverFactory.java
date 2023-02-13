@@ -33,7 +33,7 @@ public class DriverFactory {
     private static WebDriver driver;
     private static ClientApi api;
     static protected GoogleHomePage googleHomePage;
-    static final String ZAP_PROXY_ADDRESS = "http://172.17.0.1";
+    static final String ZAP_PROXY_ADDRESS = "http://172.17.0.2";
     static final int ZAP_PROXY_PORT = 8080;
     static final String ZAP_API_KEY = null;
     Properties properties = new Properties();
