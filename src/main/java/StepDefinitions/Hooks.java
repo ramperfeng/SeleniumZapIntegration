@@ -34,7 +34,7 @@ public class Hooks extends Utilities implements En {
             properties.load(input);
             System.out.println("list of pp" + properties);
             if (properties.getProperty("execution").equalsIgnoreCase("WEB")) {
-               // security(properties.getProperty("OS")==null ? "win" : properties.getProperty("OS"));
+               
                 Setup(properties.getProperty("execution")==null ? "chrome" : properties.getProperty("browser"));
 
             }
@@ -43,8 +43,8 @@ public class Hooks extends Utilities implements En {
 
             FIS = new FileInputStream(properties.getProperty("SeleniumZapIntegration\\src\\main\\java\\config\\GlobalConfig.properties"));
             System.out.println("global property files printed -------- ");
-            ErrorProp = new FileInputStream("SeleniumZapIntegration\\src\\test\\resources\\Application-props\\error.properties");
-            ENDPointProp = new FileInputStream("SeleniumZapIntegration\\src\\test\\resources\\Application-props\\apiEndPoints.properties");
+            //ErrorProp = new FileInputStream("SeleniumZapIntegration\\src\\test\\resources\\Application-props\\error.properties");
+            //ENDPointProp = new FileInputStream("SeleniumZapIntegration\\src\\test\\resources\\Application-props\\apiEndPoints.properties");
             config1 = new Properties();
             config1.load(FIS);
             config1.load(ErrorProp);
@@ -55,7 +55,7 @@ public class Hooks extends Utilities implements En {
         });
         After((Scenario scenario) -> {
             System.out.println("We are in after scenario methos and before generating Allure report");
-         //  generateAllurehtmlReport();
+        
             if (properties.getProperty("execution").equalsIgnoreCase("WEB")) {
                 if (scenario.isFailed()) {
                     writeToLog("Current Page URL is " + getDriver().getCurrentUrl());
@@ -86,35 +86,5 @@ public class Hooks extends Utilities implements En {
             writeToLog("Error Occured Inside failSafePropertyGenaeration block in preRun,Error Description =" + e.getMessage());
         }
     }
-    public void generateAllurehtmlReport()
-    {
-        try
-        {
-           System.out.println("Print system environment  >>>>>>>>>:"+ System.getenv("ALLURE_HOME"));
-           Thread.sleep(Long.parseLong("2000"));
-            ProcessBuilder processBuilder= new ProcessBuilder(System.getenv("ALLURE_HOME") +"/bin/allure.bat","serve",System.getProperty("user.dir")+"/target/allure-results");
-            //ProcessBuilder processBuilder= new ProcessBuilder("D:/allure-2.19.0/bin/allure.bat","serve","D:/TouchPoint/Cucumber-Templet/target/allure-results");
-            processBuilder.redirectErrorStream(true);
-            Process process=processBuilder.start();
-            writeToLog("Allure Html Report generated Successfully");
-            BufferedReader reader =new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            line=reader.readLine();
-            while (line !=null)
-            {
-                System.out.println("taskList :"+ line);
-                line=reader.readLine();
-                if(line.contains("Server started at"))
-                {
-                    process.destroy();
-                    break;
-                }
-            }
-
-        }catch (Throwable e)
-        {
-            writeToLog("Error in generating Allure HTML report ,Error = "+ e.getMessage());
-
-        }
-    }
+    
 }
