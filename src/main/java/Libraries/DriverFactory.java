@@ -47,72 +47,7 @@ public class DriverFactory {
         //return driver;
     }
 
-    public void security(String os) {
-
-        try {
-            Runtime r;
-
-            if (os.contains("mac") || os.contains("linux")) {
-
-                r = Runtime.getRuntime();
-                r.exec(System.getProperty("user.dir") + "/Zap/zap.sh");
-                Thread.sleep(30000);
-            } else if (os.contains("win")) {
-
-                Runtime.getRuntime().exec("C:/Program Files/OWASP/Zed Attack Proxy/zap.bat");
-                /*r = Runtime.getRuntime();
-                System.out.println(" ******  execution for zap bat file :"+System.getProperty("user.dir"));
-                r.exec("D:\\Cucumber-Automation\\zap.bat");*/
-                Thread.sleep(60000);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Exception" + e);
-        }
-    }
-
-    public String returnSecurityHtmlReport() {
-        try {
-            ClientApi api = new ClientApi(ZAP_PROXY_ADDRESS, ZAP_PROXY_PORT,ZAP_API_KEY);
-
-            String result = new String(api.core.htmlreport(ZAP_API_KEY));
-
-            FileOutputStream fop = null;
-
-            File file;
-
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-
-            String securityReportFilePath = "Chrome-report" + "_SecurityTesting-" + timeStamp + ".html";
-
-            file = new File(securityReportFilePath);
-
-            fop = new FileOutputStream(file);
-
-
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
-            // get the content in bytes        byte[] contentInBytes = result.getBytes();
-
-            int contentInBytes = 0;
-            fop.write(contentInBytes);
-
-            fop.flush();
-
-            fop.close();
-            Document doc = Jsoup.parse(result);
-
-            return returnTable("<a href=\"file:///" + securityReportFilePath + "\" target=“_blank” >Click to View Security Report</a>");
-        } catch (Exception e) {
-            return "Not able to retrive html report from zap security tool";
-        }
-    }
-
-    private String returnTable(String s) {
-        return s;
-    }
+   
 
     private void InitiateDriver(String browser) {
         //security();
@@ -127,8 +62,7 @@ public class DriverFactory {
                 ChromeOptions co = new ChromeOptions();
                 co.addArguments("headless", "window-size=1920,1080");
                 co.setAcceptInsecureCerts(true);
-                co.setProxy(proxy);
-                // co.addArguments("sdfdngfdgn");
+                co.setProxy(proxy);               
                 driver = new ChromeDriver(co);
                 api = new ClientApi(ZAP_PROXY_ADDRESS, ZAP_PROXY_PORT, ZAP_API_KEY);
 
@@ -172,35 +106,7 @@ public class DriverFactory {
 
     public void tearDown() throws ClientApiException, IOException {
         if (api != null) {
-         /*   String result = new String(api.core.htmlreport(ZAP_API_KEY));
-
-            FileOutputStream fop = null;
-
-            File file;
-
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-
-            String securityReportFilePath = "Chrome-report" + "_SecurityTesting-" + timeStamp + ".html";
-
-            file = new File(securityReportFilePath);
-
-            fop = new FileOutputStream(file);
-
-
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
-            // get the content in bytes        byte[] contentInBytes = result.getBytes();
-
-            int contentInBytes = 0;
-            fop.write(contentInBytes);
-
-            fop.flush();
-
-            fop.close();
-            Document doc = Jsoup.parse(result);
-*/
+        
             String title="Test Security Report";
             String template="traditional-html";
             String description="This is NZ POST Security test report";
@@ -218,7 +124,7 @@ public class DriverFactory {
             }
 
         }
-            //returnSecurityHtmlReport();
+           
             driver.quit();
 
         }
