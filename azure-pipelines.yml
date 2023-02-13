@@ -16,7 +16,7 @@ steps:
         script: |
           ls -ltr
           pwd
-          docker run -u -d  zap -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 -configapi.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true &
+          docker pull owasp/zap2docker-stable
           docker ps
           ls -ltr
           #mvn clean test
