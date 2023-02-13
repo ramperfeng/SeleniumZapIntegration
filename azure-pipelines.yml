@@ -16,14 +16,7 @@ steps:
         script: |
           ls -ltr
           pwd
-          wget -q -O zap.tar.gz https://github.com/zaproxy/zaproxy/releases/download/v2.12.0/ZAP_2.12.0_Linux.tar.gz
-          tar -xzf zap.tar.gz
-          mv ZAP_2.12.0 zap
+          docker run -u -d  zap -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 -configapi.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true &
+          docker ps
           ls -ltr
-          cd zap
-          chmod u+x zap.sh
-          ./zap.sh -daemon &
-          cd ..
-          ls -ltr
-          ps -ef
           mvn clean test
