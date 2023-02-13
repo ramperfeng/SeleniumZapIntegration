@@ -20,7 +20,8 @@ steps:
           docker run --name zapserver -u zap -p 8080:8080 -i owasp/zap2docker-stable zap-x.sh -daemon -host 0.0.0.0 -port 8080 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true & 
           sleep 60s
           docker ps | grep zapserver
-          docker inspect zapserver | grep IPAddress
+          IP_Address=`docker container inspect -f '{{ .NetworkSettings.IPAddress }}'`
+          echo $IP_Address
           ls -ltr
           mvn clean test 
           docker exec zapserver zap-cli report -o vulnerability.html -f HTML 
